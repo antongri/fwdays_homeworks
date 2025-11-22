@@ -1,0 +1,42 @@
+localstack start
+curl http://localhost:4566/_localstack/health | jq .
+
+export AWS_ACCESS_KEY_ID=test
+export AWS_SECRET_ACCESS_KEY=test
+export AWS_REGION=us-west-2
+export CDK_DEFAULT_ACCOUNT=000000000000
+export CDK_DEFAULT_REGION=us-west-2
+export AWS_ENDPOINT_URL=http://localhost:4566
+export AWS_ENDPOINT_URL_S3=http://localhost:4566
+
+cdklocal bootstrap --region us-west-2
+
+
+cdk init app --language typescript
+
+cdk bootstrap
+cdklocal list
+cdklocal diff --all
+cdklocal deploy --all
+
+
+npm install cdktf @cdktf/provider-docker typescript --save-dev
+
+npm install -g aws-cdk
+pip install localstack awscli-local[ver1]
+
+localstack start
+curl http://localhost:4566/_localstack/health | jq .
+npm install -g aws-cdk-local aws-cdk
+
+export AWS_ACCESS_KEY_ID=test
+export AWS_SECRET_ACCESS_KEY=test
+export AWS_REGION=us-west-2
+export CDK_DEFAULT_ACCOUNT=000000000000
+export CDK_DEFAULT_REGION=us-west-2
+export AWS_ENDPOINT_URL=http://localhost:4566
+
+cdklocal bootstrap
+cdklocal deploy --region us-west-2
+
+npm install aws-cdk-lib constructs

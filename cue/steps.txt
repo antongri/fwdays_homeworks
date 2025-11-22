@@ -1,0 +1,19 @@
+brew install cue-lang/tap/cue
+
+cue export deployment.cue --out yaml
+
+cue export multi-env.cue --out yaml -e 'deployment."web-dev"'
+cue export multi-env.cue --out yaml -e 'service."web-prod"'
+
+cue export multi-env.cue ./config/dev.cue --out yaml -e 'service."custom-prod-svc"'
+
+
+cue import example.yaml
+
+cue vet example.cue example.yaml
+
+cue export config/*.cue -o yaml > output.yaml
+
+cue export 1.cue --out yaml
+cue export 2.cue -e output
+cue vet 3.cue

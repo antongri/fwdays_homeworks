@@ -1,0 +1,4 @@
+cdktf list
+cdktf diff db-stack app-stack
+cdktf deploy db-stack app-stack
+cdktf destroy db-stack app-stack
